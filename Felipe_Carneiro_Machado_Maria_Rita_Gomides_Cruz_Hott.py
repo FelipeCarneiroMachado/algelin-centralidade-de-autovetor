@@ -17,7 +17,13 @@ nx_graph = nx.from_numpy_array(graph)
 #uma matriz ser irredutivel eh equivalente ao grafo que ela representa ser 
 #fortemente conexo
 
-#verifica se qh maior que zero
+#verifica se a matriz eh nao negativa
+if np.any(graph < 0):
+    print("Bixo SemVerTonha")
+    exit(0)
+
+
+
 # if np.any(graph == 0):
 if not nx.is_connected(nx_graph):
     print("Bixo SemVerTonha")
@@ -28,9 +34,4 @@ if not nx.is_connected(nx_graph):
 #de centralidade neste autovetor
 #AutoValores e auto vetores
 eigv = np.linalg.eig(graph)
-# print(graph)
-# print(eigv.eigenvalues)
-# print(eigv.eigenvectors)
-# print(eigv.eigenvalues.argmax())
-# print(eigv.eigenvectors[:, eigv.eigenvalues.argmax()])
 print(eigv.eigenvectors[:,eigv.eigenvalues.argmax()].argmax() + 1)
